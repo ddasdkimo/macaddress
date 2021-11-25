@@ -13,6 +13,12 @@ import requests
 from datetime import datetime,timezone,timedelta
 tz = timezone(timedelta(hours=+8))
 
+# docker 重啟程序
+def rebootdocker():
+    while True:
+        os.system('/home/nano/Desktop/rebootdocker.sh')
+        time.sleep(3600)
+        
 
 # 子執行緒的工作函數
 def job():
@@ -107,4 +113,6 @@ t = threading.Thread(target = job)
 # 執行該子執行緒
 t.start()
 
+t1 = threading.Thread(target = rebootdocker)
+t1.start()
 app.run(host="0.0.0.0", port=3000)
